@@ -2,7 +2,7 @@ package marc.tutorial
 
 import marc.tutorial.entities.{Person, RoleCount}
 import org.apache.spark.sql.functions._
-import org.apache.spark.sql.{SaveMode, SparkSession}
+import org.apache.spark.sql.{DataFrame, SaveMode, SparkSession}
 
 object SparkBasicExample {
 
@@ -68,5 +68,11 @@ object SparkBasicExample {
   //      .cache()
   //      .persist(StorageLevel.MEMORY_AND_DISK)
   //  }
+
+
+//    private def broadcast(sparkSession: SparkSession, df1: DataFrame, df2: DataFrame): DataFrame ={
+//      import sparkSession.implicits._
+//      df1.join(broadcast(df2), 'df1_code === 'df2_code, "left_outer")
+//    }
 
 }
