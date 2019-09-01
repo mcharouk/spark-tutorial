@@ -16,9 +16,8 @@ object SparkAccumulator {
     val counter = sparkSession.sparkContext.longAccumulator("counter")
 
     sparkSession.range(1,4)
-      .foreach(number => {
-        println(s"current Number : $number")
-        counter.add(1)
+      .foreachPartition(numberIterator => {
+        for (number <- numberIterator) counter.add(1)
       })
 
     println(s"counter : ${counter.value}")

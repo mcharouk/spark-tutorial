@@ -17,9 +17,8 @@ object SparkBroadcast {
     val increment = sparkSession.sparkContext.broadcast(5)
 
     sparkSession.range(1,4)
-      .foreach(number => {
-        println(s"current Number : $number")
-        counter.add(increment.value)
+      .foreachPartition(numberIterator => {
+        for (number <- numberIterator) counter.add(increment.value)
       })
 
     println(s"counter : ${counter.value}")

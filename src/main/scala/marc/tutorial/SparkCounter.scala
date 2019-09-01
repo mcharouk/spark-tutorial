@@ -14,11 +14,10 @@ object SparkCounter {
 
     var counter = 0
 
-   sparkSession.range(1,4)
-       .foreach(number => {
-         println(s"current Number : $number")
-         counter = counter + 1
-       })
+    //generate a df with 3 items
+    sparkSession.range(1, 4)
+      //for each line (3 lines), increment counter
+      .foreach(_ => counter = counter + 1)
 
     println(s"counter : $counter")
 
